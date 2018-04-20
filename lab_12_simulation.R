@@ -22,9 +22,13 @@ run_simulation = function(n_trial=1, n, p, cutoff=0.05){
     for (j in 1:3){
       for (k in 1:3){
         ml = model_select(generate_data(n[j],p[k])$covariates,generate_data(n[j],p[k])$responses,cutoff)
-        hist(ml)
+        saveRDS(ml,file="p-values.rds")
       }
     }
   }
+}
+
+make_plot = function(datapath){
+  hist(load("p-values.rds"))
 }
 
